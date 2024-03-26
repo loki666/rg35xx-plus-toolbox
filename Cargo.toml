@@ -6,3 +6,4 @@ edition = "2018"
 
 [dependencies]
 nix = { version = "0.28.0", features = ["ioctl"] }
+clap = { version = "4.5.4", features = ["derive"] }
