@@ -1,0 +1,8 @@
+[package]
+name = "rg35xx-plus-toolbox"
+version = "0.1.0"
+authors = ["Philippe Simons"]
+edition = "2018"
+
+[dependencies]
+nix = { version = "0.28.0", features = ["ioctl"] }
