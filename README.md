@@ -1,4 +1,4 @@
-RG35XX Plus/H toolbox
+# RG35XX Plus/H toolbox
 
-current features
+### current features
 - set / get LCD brightness
