@@ -21,7 +21,7 @@ enum Commands {
     #[command(name = "brightness")]
     Brightness {
         #[arg(short, long, value_name = "value")]
-        value: Option<u8>
+        value: Option<u32>
     }
 }
 
