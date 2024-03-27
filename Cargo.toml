@@ -4,6 +4,13 @@ version = "0.1.0"
 authors = ["Philippe Simons"]
 edition = "2018"
 
+[profile.release]
+strip = true
+opt-level = "z"
+lto = true
+codegen-units = 1
+panic = "abort"
+
 [dependencies]
 nix = { version = "0.28.0", features = ["ioctl"] }
 clap = { version = "=4.4.7", features = ["derive"] }
