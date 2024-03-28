@@ -9,7 +9,6 @@ fn from_nix_result<T>(res: ::nix::Result<T>) -> io::Result<T> {
     }
 }
 
-
 mod ioctl {
     use nix::{ioctl_write_ptr_bad};
 
@@ -23,11 +22,11 @@ mod ioctl {
 const BRIGHTNESS_MIN_LEVEL: u32 = 37;
 const BRIGHTNESS_MAX_LEVEL: u32 = 255;
 
-pub fn set_brightness(fd: RawFd, percent: u32) -> io::Result<u32> {
+pub fn set_brightness(fd: RawFd, percent: u32) -> io::Result<()> {
     let raw_value: u32 = percent * (BRIGHTNESS_MAX_LEVEL - BRIGHTNESS_MIN_LEVEL) / 100 + BRIGHTNESS_MIN_LEVEL;
     let data: [u32; 4] = [0, raw_value, 0, 0];
     from_nix_result(unsafe { ioctl::set_brightness(fd, &data) })?;
-    Ok(percent)
+    Ok(())
 }
 
 pub fn get_brightness(fd: RawFd) -> io::Result<u32> {
