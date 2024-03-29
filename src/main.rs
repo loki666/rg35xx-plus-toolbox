@@ -28,8 +28,8 @@ enum Commands {
         percent: Option<u32>
     },
     /// set or get the current display output
-    #[command(name = "output")]
-    Output {
+    #[command(name = "display")]
+    Display {
         #[arg(short, long, value_name = "type")]
         output_type: Option<OutputType>
     }
@@ -68,13 +68,16 @@ fn main() -> ExitCode {
             };
         }
 
-        Commands::Output { output_type } => {
+        Commands::Display { output_type } => {
             if output_type.is_none() {
                 let result = output::get_output(dev.as_raw_fd());
 
                 match result {
                     Ok(output_type) => {
-                        if output_type == OutputType::LCD { println!("lcd") } else { println!("hdmi") }
+                        match output_type {
+                            OutputType::LCD => { println!("lcd") }
+                            OutputType::HDMI => { println!("hdmi") }
+                        };
                     }
                     Err(e) => {
                         eprintln!("failed to set output: {e}");

@@ -19,7 +19,7 @@ mod ioctl {
     ioctl_write_ptr_bad!(get_brightness, DISP_LCD_GET_BRIGHTNESS, [u32]);   
 }
 
-const BRIGHTNESS_MIN_LEVEL: u32 = 37;
+const BRIGHTNESS_MIN_LEVEL: u32 = 25;
 const BRIGHTNESS_MAX_LEVEL: u32 = 255;
 
 pub fn set_brightness(fd: RawFd, percent: u32) -> io::Result<()> {

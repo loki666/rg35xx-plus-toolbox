@@ -33,7 +33,10 @@ pub fn get_output(fd: RawFd) -> io::Result<OutputType> {
 }
 
 pub fn set_output(fd: RawFd, output_type: OutputType) -> io::Result<()> {
-    let data: [u32; 4] = if output_type == OutputType::LCD {[0, 1, 2, 0]}  else {[0, 4, 5, 0]};
+    let data: [u32; 4] = match output_type {
+        OutputType::LCD => {[0, 1, 0, 0]}
+        OutputType::HDMI => {[0, 4, 5, 0]}
+    };
     from_nix_result(unsafe { ioctl::set_output(fd, &data) })?;
     Ok(())
 }
